@@ -1,0 +1,4 @@
+--upgrade setuptools pip — user
+nvidia-pyindex
+pycuda
+transformers diffusers scipy accelerate
