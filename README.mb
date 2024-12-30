@@ -1,0 +1,56 @@
+# README.md
+
+## Downloading Stable Diffusion v1.4 with ONNX Weights
+
+To download Stable Diffusion v1.4 with ONNX weights, use the following command:
+
+```bash
+!wget https://huggingface.co/kamalkraj/stable-diffusion-v1-4-onnx/resolve/main/models.tar.gz
+```
+
+## Installing TensorRT Dependencies
+
+Install the necessary dependencies for TensorRT by executing the script `dependencies.sh`.
+
+## Installing TensorRT
+
+Download the TensorRT tar file from NVIDIA. Once downloaded, navigate to the `Tensorrt-<version>/python` directory and run the following commands:
+
+```bash
+python3 -m pip install tensorrt-*-cp3x-none-linux_x86_64.whl
+python3 -m pip install tensorrt_lean-*-cp3x-none-linux_x86_64.whl
+python3 -m pip install tensorrt_dispatch-*-cp3x-none-linux_x86_64.whl
+```
+
+## Setting Up Library Path
+
+Define the library path by adding the following line to your `~/.bashrc` file:
+
+```bash
+export LD_LIBRARY_PATH=./TensorRT-<version>/bin
+```
+
+## Installing Required Libraries
+
+Install the libraries listed in `requirements.txt`.
+
+## Converting UNet ONNX File
+
+Define the UNet ONNX file in `trt_convert.py`, then execute the script:
+
+```bash
+python3 trt_convert.py
+```
+
+## Running Inference with Stable Diffusion
+
+To perform inference using Stable Diffusion, run the following command:
+
+```bash
+python sd-1.4_infer.py --trt_unet_save_path ./unet_trt_v10.engine
+```
+
+This setup will allow you to effectively use Stable Diffusion v1.4 with TensorRT optimizations.
+
+Citations:
+[1] https://huggingface.co/kamalkraj/stable-diffusion-v1-4-onnx/resolve/main/models.tar.gz
