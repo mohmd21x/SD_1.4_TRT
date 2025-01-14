@@ -329,7 +329,7 @@ class Engine:
         out = ""
         for opt_profile in range(self.engine.num_optimization_profiles):
             for binding_idx in range(self.engine.num_io_tensors):
-                name = self.engine.get_binding_name(binding_idx)
-                shape = self.engine.get_profile_shape(opt_profile, name)
+                name = self.engine.get_tensor_name(binding_idx)
+                shape = self.engine.get_tensor_profile_shape(profile_index=opt_profile, name=name)
                 out += f"\t{name} = {shape}\n"
         return out
